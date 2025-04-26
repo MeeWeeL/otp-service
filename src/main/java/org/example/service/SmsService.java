@@ -1,13 +1,17 @@
 package org.example.service;
 
-import org.jsmpp.*;
+import org.jsmpp.InvalidResponseException;
+import org.jsmpp.PDUException;
 import org.jsmpp.bean.*;
-import org.jsmpp.extra.*;
-import org.jsmpp.session.*;
+import org.jsmpp.extra.NegativeResponseException;
+import org.jsmpp.extra.ResponseTimeoutException;
+import org.jsmpp.session.BindParameter;
+import org.jsmpp.session.SMPPSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
@@ -29,7 +33,6 @@ public class SmsService {
     public void sendCode(String phoneNumber, String code) {
         SMPPSession session = new SMPPSession();
         try {
-            // 1. Подключение
             session.connectAndBind(
                     host, port,
                     new BindParameter(
@@ -43,7 +46,6 @@ public class SmsService {
                     )
             );
 
-            // 2. Отправка сообщения
             submitMessage(session, phoneNumber, code);
 
         } catch (IOException e) {
@@ -77,18 +79,18 @@ public class SmsService {
                 NumberingPlanIndicator.UNKNOWN,
                 phone,
                 new ESMClass(),
-                (byte)0,
-                (byte)1,
+                (byte) 0,
+                (byte) 1,
                 null,
                 null,
                 new RegisteredDelivery(SMSCDeliveryReceipt.SUCCESS_FAILURE),
-                (byte)0,
+                (byte) 0,
                 new GeneralDataCoding(
                         Alphabet.ALPHA_DEFAULT,
                         MessageClass.CLASS1,
                         false
                 ),
-                (byte)0,
+                (byte) 0,
                 message.getBytes(StandardCharsets.UTF_8)
         );
     }

@@ -1,10 +1,11 @@
 package org.example.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.model.OtpCode;
 import org.example.repository.OtpCodeRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 

@@ -1,10 +1,10 @@
 package org.example.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.dto.AuthRequest;
 import org.example.model.User;
 import org.example.security.JwtUtils;
 import org.example.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

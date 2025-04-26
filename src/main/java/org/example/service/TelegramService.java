@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -23,7 +24,6 @@ public class TelegramService {
     private String chatId;
 
     public void sendCode(String destination, String code) {
-        // Если destination не указан, используем chatId из конфига
         String targetChatId = (destination != null && !destination.isEmpty())
                 ? destination
                 : chatId;

@@ -7,11 +7,18 @@ import org.example.model.OtpConfig;
 import org.example.model.User;
 import org.example.repository.OtpCodeRepository;
 import org.example.repository.OtpConfigRepository;
-import org.example.service.*;
+import org.example.service.EmailService;
+import org.example.service.FileService;
+import org.example.service.SmsService;
+import org.example.service.TelegramService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.time.LocalDateTime;
 import java.util.Random;
 
